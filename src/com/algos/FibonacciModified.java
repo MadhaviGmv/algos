@@ -65,21 +65,54 @@ public class FibonacciModified {
             arr[n-1] = out2.toString();
             returnVal = out2;
         }
-        System.out.println("fib("+n+") = "+returnVal.toString());
+//        System.out.println("fib("+n+") = "+returnVal.toString());
         return returnVal;
+    }
+    
+    private static BigInteger findFibonacciNumberIteratively(int n) {
+        for (int index =1; index<=n; index ++){
+            if(index == 1){
+                arr[index] = String.valueOf(a);
+            }else if(index ==2){
+                arr[index] = String.valueOf(b);
+            }else{
+                BigInteger fib = (new BigInteger(arr[index-1])).pow(2).add(new BigInteger(arr[index-2]));
+                arr[index] = fib.toString();
+            }
+        }
+        return new BigInteger(arr[n]);
+        
     }
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Input FirstElement : ");
         a = scan.nextInt();
+        System.out.println("Input SecondElement : ");
         b = scan.nextInt();
+        System.out.println("Input index N to calculate fibonacci number ");
         n = scan.nextInt();
-        arr = new String[n];
+        arr = new String[n+1];
         //initialize
-        for(int i=2; i<n;i++){
+        for(int i=2; i<=n;i++){
             arr[i] = "-1";
         }
-//        System.out.println(a+ " ; "+b+" ; "+n);
-        System.out.println(findFibonacciNumber(n));
+        // recursive
+        Long startTime = System.nanoTime();
+        BigInteger number = findFibonacciNumber(n);
+        Long diff = System.nanoTime() - startTime;
+        System.out.println("Recursive "+ number);
+        System.out.println("Timetaken in nanosecs "+ diff);
+        //re-initialize, since we are using same arr
+        for(int i=2; i<=n;i++){
+            arr[i] = "-1";
+        }
+        startTime = System.nanoTime();
+        number = findFibonacciNumberIteratively(n);
+        diff = System.nanoTime() - startTime;
+        System.out.println("Iterative "+ number);
+        System.out.println("Timetaken in nanosecs "+ diff);
     }
+
+    
 }
