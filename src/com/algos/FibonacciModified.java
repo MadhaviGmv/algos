@@ -19,7 +19,8 @@ You are given three space separated integers A, B and N on one line.
 Output : One integer.
 This integer is the Nth term of the given series when the first two terms are A and B respectively. 
 
-Some output may even exceed the range of 64 bit integer. 
+Some output may even exceed the range of 64 bit integer.
+arr can be BigInteger[] instead of String[]  
 
  * @author madhavi
  *
@@ -112,6 +113,7 @@ public class FibonacciModified {
         diff = System.nanoTime() - startTime;
         System.out.println("Iterative "+ number);
         System.out.println("Timetaken in nanosecs "+ diff);
+        System.out.println("Recursion is faster as n increases");
     }
 
     
